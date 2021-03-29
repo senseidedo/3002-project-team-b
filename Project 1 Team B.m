@@ -11,5 +11,9 @@ h = 200;
 w = 0.16;
 
 %code to solve
+%fourier
+qf = k*Af*(ta-tb)/sidef; %this shit is completely wrong
+%newton
+qh = h*Ah*(tc-td)/sideh; %this shit is also completely wrong but bear with me
 
 %code to plot
