@@ -22,20 +22,15 @@ for i=1:n-1
     end
 end
 
-
 %Back substitution
 x=zeros(n,1);
 
-%x(3)=A(3,4)/A(3,3);
-
 x(end)=A(end,end)/A(end,end-1); %Generalized
-
-
-% x(2)=(A(2,4)-A(2,3)*x(3))/A(2,2);
-% x(1)=(A(1,4)-A(1,3)*x(3)-A(1,2)*x(2))/A(1,1);
 
 %Generalized
  for i=n-1:-1:1
     x(i)=(A(i,end)-A(i,i+1:n)*x(i+1:n))/A(i,i);
  end
  x
+ 
+ %Code for plotting
