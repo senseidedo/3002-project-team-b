@@ -1,19 +1,35 @@
-% Abandon all hope, ye who enter here
+%CODE TO SOLVE
+%Create Augmented Matrix
 
-%variables
-mesh1 = .04;
-mesh2 = .02;
-k = 15;
-T1 = 200;
-T2 = 20;
-Tinf = 20;
-h = 200;
-w = 0.16;
+A=[a,b];
 
-%code to solve
-%fourier
-qf = k*Af*(ta-tb)/sidef; %this shit is completely wrong
-%newton
-qh = h*Ah*(tc-td)/sideh; %this shit is also completely wrong but bear with me
+[n,c]=size(A);
 
-%code to plot
+k=1;
+
+% Creating Triangular Matrix
+for i=1:n-1
+    for j=i+1:n
+        m=A(j,i)/A(i,i);
+        A(j,:)=A(j,:)-m*A(i,:);
+    end
+end
+
+
+%Back substitution
+x=zeros(n,1);
+
+%x(3)=A(3,4)/A(3,3);
+
+x(end)=A(end,end)/A(end,end-1); %Generalized
+
+
+x(2)=(A(2,4)-A(2,3)*x(3))/A(2,2)
+x(1)=(A(1,4)-A(1,3)*x(3)-A(1,2)*x(2))/A(1,1)
+
+%Generalized
+ %for i=n-1:-1:1
+  %   x(i)=(A(i,end)-A(i,i+1:n)*x(i+1:n))/A(i,i);
+ %end
+
+%CODE TO PLOT
