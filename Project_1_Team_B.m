@@ -1,32 +1,41 @@
-clc;
-clearvars;
+% Plot for 40 mm mesh
+ 
+% x1 = [0 40 80 0 40 80 0 40 80];
+% y1 = [0 0 0 40 40 40 80 80 80];
+% T1 = [20 20 20 200 135.7143 122.8571 200 200 200];
 
-%Equations from the problem
+% mdl1 = scatteredInterpolant(x1(:), y1(:), T1(:), 'natural');
+% x1g = linspace(min(x1), max(x1), 10);
+% y1g = linspace(min(x1), max(x1), 10);
+% [X1g, Y1g] = meshgrid(x1g, y1g);
+% Z1g = mdl1(X1g, Y1g);
 
-a=[
-b=[
+% contourf(X1g, Y1g, Z1g, 10);
 
-%Create Augmented Matrix
-A=[a,b];
-[n,~]=size(A);
-k=1;
+% Plot for 20 mm mesh
 
-%Creating Triangular Matrix
-for i=1:n-1
-    for j=i+1:n
-        m=A(j,i)/A(i,i);
-        A(j,:)=A(j,:)-m*A(i,:);
-    end
-end
+% x2 = [0 20 40 60 80 0 20 40 60 80 0 20 40 60 80 0 20 40 60 80 0 20 40 60 80];
+% y2 = [0 0 0 0 0 20 20 20 20 20 40 40 40 40 40 60 60 60 60 60 80 80 80 80 80];
+% T2 = [20 20 20 20 20 106.1867 88.3435 74.2687 65.4005 63.2936 200 152.9186 123.3308 104.0397 102.3734 200 200 162.0962 125.0542 138.1204 200 200 200 200 200];
 
-%Back substitution
-x=zeros(n,1);
+% mdl2 = scatteredInterpolant(x2(:), y2(:), T2(:), 'natural');
+% x2g = linspace(min(x2), max(x2), 10);
+% y2g = linspace(min(x2), max(x2), 10);
+% [X2g, Y2g] = meshgrid(x2g, y2g);
+% Z2g = mdl2(X2g, Y2g);
 
-x(end)=A(end,end)/A(end,end-1); %Generalized
+% contourf(X2g, Y2g, Z2g, 10);
 
-%Generalized
-for i=n-1:-1:1
-    x(i)=(A(i,end)-A(i,i+1:n)*x(i+1:n))/A(i,i);
-end
-x
+% %Plot for 20 mm mesh and conduction
 
+x3 = [0 20 40 60 80 0 20 40 60 80 0 20 40 60 80 0 20 40 60 80 0 20 40 60 80];
+y3 = [0 0 0 0 0 20 20 20 20 20 40 40 40 40 40 60 60 60 60 60 80 80 80 80 80];
+T3 = [t18 t19 t20 t21 t22 t13 t14 t15 t16 t17 200 t9 t10 t11 t12 200 200 t5 t6 t7 200 200 200 200 200];
+
+mdl3 = scatteredInterpolant(x3(:), y3(:), T3(:), 'natural');
+x3g = linspace(min(x3), max(x3), 10);
+y3g = linspace(min(x3), max(x3), 10);
+[X3g, Y3g] = meshgrid(x3g, y3g);
+Z3g = mdl3(X3g, Y3g);
+
+contourf(X3g, Y3g, Z3g, 10);
